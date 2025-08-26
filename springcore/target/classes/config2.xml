@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- Defining a collection bean -->
+    
+   <bean name="emp1" class="com.sprinngcore.collections.Emp">  <!-- FIXED id -->
+   
+    <property name="name" value="Bharat"/>
+    
+    <property name="phones">
+    <list>
+    <value>8868945457</value>
+    <value>9545945457</value>
+    <value>8544945457</value>
+    
+    </list>
+    </property>
+    
+    <property name="addresses">
+    <set>
+    <value>Delhi</value>
+    <value>Bihar</value>
+    <value>Blr</value>
+    </set>
+    </property>
+    
+    <property name="courses">
+    <map>
+    <entry key="java" value="2month"/>
+    <entry key="python" value="3month"/>
+    <entry key="Spring" value="4month"/>
+    </map>
+    </property>
+    
+</bean>
+
+</beans>

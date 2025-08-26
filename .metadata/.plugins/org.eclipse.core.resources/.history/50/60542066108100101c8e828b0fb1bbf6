@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Interservlet commn example</title>
+</head>
+<body>
+<form action="first" method="post">
+			<input type="submit"/>
+		</form>
+
+</body>
+</html>

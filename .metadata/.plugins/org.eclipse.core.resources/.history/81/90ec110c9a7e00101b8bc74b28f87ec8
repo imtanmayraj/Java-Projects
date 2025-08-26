@@ -1,0 +1,35 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class test {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/college";
+        String user = "root";
+        String password = "Tanmay1709#";
+
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            System.out.println("✅ JDBC connection successful!");
+
+            // 👇 Execute SQL SELECT query
+            Statement stmt = conn.createStatement();
+           // ResultSet rs = stmt.executeQuery("SELECT * FROM student");
+            stmt.executeUpdate("insert into student values(12, 'bharat', 'M', '1999-12-12', '9898989890', 'Patna', 'JDBC,SpringBoot')");
+
+            // 👇 Loop through results
+//            while (rs.next()) {
+//                System.out.println(rs.getString("name")); // column name = name
+//            }
+
+            // ✅ Close connection
+            conn.close();
+
+        } catch (SQLException e) {
+            System.out.println("❌ JDBC connection failed!");
+            e.printStackTrace();
+        }
+    }
+}

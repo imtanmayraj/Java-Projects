@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import="java.util.Date"  %>
+    
+    <%@ include file='t1.txt' %>
+    
+     <%@ include file='menu.html' %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP Servlet Example</title>
+</head>
+<body>
+<%
+//Scriptlet tag - can't create static/non-static var
+	System.out.println(100);
+	out.println("Hello");
+	
+	for(int i=0;i<5;i++){
+		out.println(i);
+	}
+
+
+%>
+
+<%!
+
+//Expression tag - can create static/non-static var
+int  x=10645430;
+int y=5054543;
+
+%>
+
+
+<%=x %>
+<%=y %>
+
+<%= new Date() %>
+</body>
+</html>

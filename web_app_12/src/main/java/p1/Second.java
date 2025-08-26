@@ -1,0 +1,37 @@
+package p1;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+
+@WebServlet("/second")
+public class Second extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+    public Second() {
+        super();
+        
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("From second servlet -Get");
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//System.out.println("From second servlet -Post");
+		
+		String name = (String) request.getAttribute("name");
+
+		System.out.println(name);
+	}
+
+}

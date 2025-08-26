@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- Defining a Student bean -->
+    
+<!--1st method     <property name= > -->
+<!--     <value>value</value> -->
+<!--     </property> -->
+
+<!-- 2nd method<property name="" value=""></property> -->
+
+<!--     <bean id="student1" class="com.sprinngcore.Student"> -->
+<!--         <property name="studentId" value="1709"/> -->
+<!--         <property name="studentName" value="Tanmay Raj"/> -->
+<!--         <property name="studentCity" value="Motihari"/> -->
+<!--     </bean> -->
+
+<!-- 3rd method <bean p:property :value></bean> -->
+
+
+<bean class="com.sprinngcore.Student" name="student1" p:studentId="2406" p:studentName="Mansi Sahal"  p:studentCity="Delhi"></bean>
+<bean class="com.sprinngcore.Student" name="student2" p:studentId="2709" p:studentName="Mayur Kishan"  p:studentCity="Lucknow"></bean>
+
+</beans>

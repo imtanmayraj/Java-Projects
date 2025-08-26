@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	System.out.println(100);
+	out.println("Hello");
+	
+	for(int i=0;i<5;i++){
+		out.println(i);
+	}
+
+
+%>
+
+<%!
+int  x=10645430;
+int y=5054543;
+
+%>
+
+<%=x %>
+<%=y %>
+</body>
+</html>
