@@ -1,0 +1,78 @@
+package com.ems.Controller;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+
+import com.ems.service.DBServiceImpl;
+
+
+@WebServlet("/registrationController")
+public class RegistrationController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+    public RegistrationController() {
+        super();
+       
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+//		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/registration.jsp");
+//		rd.forward(request, response);
+
+	
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			HttpSession session = request.getSession(true);
+			session.setMaxInactiveInterval(10);
+			String email = (String)session.getAttribute("email");
+			
+			if(email!=null) {
+			DBServiceImpl service = new DBServiceImpl();
+			service.connectDB();
+			
+			ResultSet result = service.getUserByEmail(email);
+			int userId = 0;
+			if(result.next()) {
+				userId = result.getInt(1);
+			}
+			String name = request.getParameter("name");
+			String course = request.getParameter("course");
+			String emailId = request.getParameter("email");
+			String mobile = request.getParameter("mobile");
+			
+			service.createRegistration(name,course,emailId,mobile,userId);
+			
+			request.setAttribute("message", "Registration created");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/registration.jsp");
+			rd.forward(request, response);
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+		}
+
+
+
+	
+	}
+
+}

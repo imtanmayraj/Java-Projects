@@ -1,0 +1,122 @@
+package com.ems.service;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
+
+public class DBServiceImpl implements DBService {
+
+	
+	private Connection con;
+	private Statement stmnt;
+
+	@Override
+	public void connectDB() {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emsdb","root","Tanmay1709#");
+			stmnt = con.createStatement();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public boolean verifyLogin(String email, String password) {
+		// TODO Auto-generated method stub
+		
+		try {
+			 ResultSet result = stmnt.executeQuery("select * from user where email='"+email+"' and password='"+password+"'");
+			 
+			 return result.next();
+			
+		} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		return false;
+	}
+	@Override
+	public ResultSet getUserByEmail(String email) {
+		try {
+			 ResultSet result = stmnt.executeQuery("select * from user where email='"+email+"'");
+			 
+			 return result;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+	}
+
+//	public void createRegistration(String name, String course, String emailId, String mobile, int userId) {
+//		try {
+//			stmnt.executeUpdate("INSERT INTO registration (name, course, email, mobile, user_id) VALUES ('"+name+"', '"+course+"', '"+emailId+"', '"+mobile+"'," +userId+ ")");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//	}
+	
+	public void createRegistration(String name, String course, String emailId, String mobile, int userId) {
+	    try {
+	        String sql = "INSERT INTO registration (name, course, email, mobile, user_id) VALUES ('"
+	                     + name + "', '" + course + "', '" + emailId + "', '" + mobile + "', " + userId + ")";
+	        
+	        // 👇 print SQL in console
+	        System.out.println("Executing SQL: " + sql);
+	        
+	        stmnt.executeUpdate(sql);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	
+	@Override
+	public ResultSet getRegistrationsByUser(int userId) {
+		try {
+			 ResultSet result = stmnt.executeQuery("select * from registration where user_id='"+userId+"'");
+			 
+			 return result;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+	}
+	public void deleteRegistration(String email) {
+		try {
+			stmnt.executeUpdate("Delete from registration where email='"+email+"'");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	@Override
+	public ResultSet getRegistrationById(int id) {
+		try {
+			ResultSet result = stmnt.executeQuery("select * from registration where id='"+id+"'");
+			return result;	
+		} catch (Exception e) {
+				e.printStackTrace();
+			}
+		return null;
+	}
+
+
+	public void updateRegistration(int id, String name, String course, String email, String mobile) {
+		try {
+			stmnt.executeUpdate("update registration set name='"+name+"', course='"+course+"',email='"+email+"',mobile='"+mobile+"' where id='"+id+"'");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+
+
+
+
+}
+
+
+//model layer
